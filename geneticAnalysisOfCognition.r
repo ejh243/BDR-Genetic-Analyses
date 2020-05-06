@@ -249,7 +249,7 @@ tabCogGenetics.prsAdj[each,6]<-sumSq[1,1]/sum(sumSq)*100
 tabCogGenetics.prsAdj[each,c(4,5)]<-summary(model)$coefficients[2,c(1,4)]
 
 ## test prs and apoe together
-model<-lm(scoreLast$x ~ prs.scale[indexGenetic] + demo$n_e2[indexDemo] + demo$n_e4[indexDemo] + demo$Braak_tangle[indexDemo] + timeLast$x + demo$Age[indexDemo] + demo$Sex[indexDemo]+ demo$BDR_Centre_key[indexDemo] + genoPCs$C1[indexGenetic] + genoPCs$C2[indexGenetic] + genoPCs$C3[indexGenetic] + genoPCs$C4[indexGenetic] + genoPCs$C5[indexGenetic] + genoPCs$C6[indexGenetic] + genoPCs$C7[indexGenetic] + genoPCs$C8[indexGenetic])
+model<-lm(scoreLast$x ~ prs.scale[indexGenetic] + demo$n_e2[indexDemo] + demo$n_e4[indexDemo] + demo$Braak_tangle[indexDemo] + timeLast$x + demo$Age[indexDemo] + demo$Sex[indexDemo] + demo$BDR_Centre_key[indexDemo] + genoPCs$C1[indexGenetic] + genoPCs$C2[indexGenetic] + genoPCs$C3[indexGenetic] + genoPCs$C4[indexGenetic] + genoPCs$C5[indexGenetic] + genoPCs$C6[indexGenetic] + genoPCs$C7[indexGenetic] + genoPCs$C8[indexGenetic])
 tabCogGenetics.jointAdj[each,1]<-length(residuals(model))
 tabCogGenetics.jointAdj[each,2]<-mean(timeLast$x[!is.na(prs.scale[indexGenetic]) & !is.na(demo$n_e2[indexDemo])], na.rm = TRUE)
 tabCogGenetics.jointAdj[each,3]<-sd(timeLast$x[!is.na(prs.scale[indexGenetic]) & !is.na(demo$n_e2[indexDemo])], na.rm = TRUE)

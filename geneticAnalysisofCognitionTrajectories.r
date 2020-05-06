@@ -144,9 +144,9 @@ for(each in cogVar){
 	timeDeath<-as.numeric(cad.sub$VISIT_DATE - cad.sub.last$MRC_DoD[match(cad.sub$BBNId, cad.sub.last$BBNId)])
 
 	index<-match(cad.sub$BBNId, pathDat$BBNId)
-	model1<-lmer(each ~ timeBaseline + Age + GENDER + pathDat$n_e2[index] + pathDat$n_e2[index] * timeBaseline + pathDat$n_e4[index] + pathDat$n_e4[index] * timeBaseline + (1 | BBNId), data = cad.sub)
-	model2<-lmer(each ~ timeDeath + Age + GENDER + pathDat$n_e2[index] + pathDat$n_e2[index] * timeDeath + pathDat$n_e4[index] + pathDat$n_e4[index] * timeDeath+ (1 | BBNId), data = cad.sub)
-	model3<-lmer(each ~ Age + GENDER + pathDat$n_e2[index] + pathDat$n_e2[index] * Age + pathDat$n_e4[index] + pathDat$n_e4[index] * Age  + (1 | BBNId), data = cad.sub)
+	model1<-lmer(each ~ timeBaseline + Age + GENDER + pathDat$n_e2[index] + pathDat$n_e2[index] * timeBaseline + pathDat$n_e4[index] + pathDat$n_e4[index] * timeBaseline + pathDat$BDR_Centre_key[index] + genoPCs$C1[index] + genoPCs$C2[index] + genoPCs$C3[index] + genoPCs$C4[index] + genoPCs$C5[index] + genoPCs$C6[index] + genoPCs$C7[index] + genoPCs$C8[index] + (1 | BBNId), data = cad.sub)
+	model2<-lmer(each ~ timeDeath + Age + GENDER + pathDat$n_e2[index] + pathDat$n_e2[index] * timeDeath + pathDat$n_e4[index] + pathDat$n_e4[index] * timeDeath + pathDat$BDR_Centre_key[index] + genoPCs$C1[index] + genoPCs$C2[index] + genoPCs$C3[index] + genoPCs$C4[index] + genoPCs$C5[index] + genoPCs$C6[index] + genoPCs$C7[index] + genoPCs$C8[index]+ (1 | BBNId), data = cad.sub)
+	model3<-lmer(each ~ Age + GENDER + pathDat$n_e2[index] + pathDat$n_e2[index] * Age + pathDat$n_e4[index] + pathDat$n_e4[index] * Age + pathDat$BDR_Centre_key[index] + genoPCs$C1[index] + genoPCs$C2[index] + genoPCs$C3[index] + genoPCs$C4[index] + genoPCs$C5[index] + genoPCs$C6[index] + genoPCs$C7[index] + genoPCs$C8[index]+ (1 | BBNId), data = cad.sub)
 
 	timeP[each,1:2]<-summary(model1)$coefficients["timeBaseline", c(1,5)]
 	timeP[each,3:4]<-summary(model1)$coefficients["pathDat$n_e2[index]", c(1,5)]
@@ -191,9 +191,9 @@ for(each in cogVar){
 	timeDeath<-as.numeric(cad.sub$VISIT_DATE - cad.sub.last$MRC_DoD[match(cad.sub$BBNId, cad.sub.last$BBNId)])
 
 	index<-match(cad.sub$BBNId, pathDat$BBNId)
-	model1<-lmer(each ~ timeBaseline + Age + GENDER + prs.scale[index] + prs.scale[index] * timeBaseline + (1 | BBNId), data = cad.sub)
-	model2<-lmer(each ~ timeDeath + Age + GENDER + prs.scale[index] + prs.scale[index] * timeDeath + (1 | BBNId), data = cad.sub)
-	model3<-lmer(each ~ Age + GENDER + prs.scale[index] + prs.scale[index] * Age + (1 | BBNId), data = cad.sub)
+	model1<-lmer(each ~ timeBaseline + Age + GENDER + prs.scale[index] + prs.scale[index] * timeBaseline + pathDat$BDR_Centre_key[index] + genoPCs$C1[index] + genoPCs$C2[index] + genoPCs$C3[index] + genoPCs$C4[index] + genoPCs$C5[index] + genoPCs$C6[index] + genoPCs$C7[index] + genoPCs$C8[index]+ (1 | BBNId), data = cad.sub)
+	model2<-lmer(each ~ timeDeath + Age + GENDER + prs.scale[index] + prs.scale[index] * timeDeath + pathDat$BDR_Centre_key[index] + genoPCs$C1[index] + genoPCs$C2[index] + genoPCs$C3[index] + genoPCs$C4[index] + genoPCs$C5[index] + genoPCs$C6[index] + genoPCs$C7[index] + genoPCs$C8[index]+ (1 | BBNId), data = cad.sub)
+	model3<-lmer(each ~ Age + GENDER + prs.scale[index] + prs.scale[index] * Age + pathDat$BDR_Centre_key[index] + genoPCs$C1[index] + genoPCs$C2[index] + genoPCs$C3[index] + genoPCs$C4[index] + genoPCs$C5[index] + genoPCs$C6[index] + genoPCs$C7[index] + genoPCs$C8[index]+ (1 | BBNId), data = cad.sub)
 
 	timeP[each,1:2]<-summary(model1)$coefficients["timeBaseline", c(1,5)]
 	timeP[each,3:4]<-summary(model1)$coefficients["prs.scale[index]", c(1,5)]
@@ -233,9 +233,9 @@ for(each in cogVar){
 	timeDeath<-as.numeric(cad.sub$VISIT_DATE - cad.sub.last$MRC_DoD[match(cad.sub$BBNId, cad.sub.last$BBNId)])
 
 	index<-match(cad.sub$BBNId, pathDat$BBNId)
-	model1<-lmer(each ~ timeBaseline + Age + GENDER + pathDat$Braak_tangle[index] + pathDat$Braak_tangle[index] * timeBaseline + (1 | BBNId), data = cad.sub)
-	model2<-lmer(each ~ timeDeath + Age + GENDER + pathDat$Braak_tangle[index] + pathDat$Braak_tangle[index] * timeDeath + (1 | BBNId), data = cad.sub)
-	model3<-lmer(each ~ Age + GENDER + pathDat$Braak_tangle[index] + pathDat$Braak_tangle[index] * Age + (1 | BBNId), data = cad.sub)
+	model1<-lmer(each ~ timeBaseline + Age + GENDER + pathDat$Braak_tangle[index] + pathDat$Braak_tangle[index] * timeBaseline + pathDat$BDR_Centre_key[index] + genoPCs$C1[index] + genoPCs$C2[index] + genoPCs$C3[index] + genoPCs$C4[index] + genoPCs$C5[index] + genoPCs$C6[index] + genoPCs$C7[index] + genoPCs$C8[index]+ (1 | BBNId), data = cad.sub)
+	model2<-lmer(each ~ timeDeath + Age + GENDER + pathDat$Braak_tangle[index] + pathDat$Braak_tangle[index] * timeDeath + pathDat$BDR_Centre_key[index] + genoPCs$C1[index] + genoPCs$C2[index] + genoPCs$C3[index] + genoPCs$C4[index] + genoPCs$C5[index] + genoPCs$C6[index] + genoPCs$C7[index] + genoPCs$C8[index]+ (1 | BBNId), data = cad.sub)
+	model3<-lmer(each ~ Age + GENDER + pathDat$Braak_tangle[index] + pathDat$Braak_tangle[index] * Age + pathDat$BDR_Centre_key[index] + genoPCs$C1[index] + genoPCs$C2[index] + genoPCs$C3[index] + genoPCs$C4[index] + genoPCs$C5[index] + genoPCs$C6[index] + genoPCs$C7[index] + genoPCs$C8[index]+ (1 | BBNId), data = cad.sub)
 
 	timeP[each,1:2]<-summary(model1)$coefficients["timeBaseline", c(1,5)]
 	timeP[each,3:4]<-summary(model1)$coefficients["pathDat$Braak_tangle[index]", c(1,5)]
@@ -256,8 +256,8 @@ write.csv(timeP, "/mnt/data1/Gemma/BDR/BDR_genetic/Analysis/CognitiveTrajectoryI
 ## does neuropathology drive cognitive differences by APOE
 
 
-timeP<-matrix(data = NA, ncol = 32, nrow = length(cogVar))
-colnames(timeP)<-c("Baseline:Coeff", "Baseline:Pvalue", "E2:Coeff", "E2:Pvalue", "E4:Coeff", "E4:Pvalue", "BaselineIntE2:Coeff", "BaselineIntE2:Pvalue", "BaselineIntE4:Coeff", "BaselineIntE4:Pvalue", "Death:Coeff", "Death:Pvalue", "E2:Coeff", "E2:Pvalue", "E4:Coeff", "E4:Pvalue", "DeathIntE2:Coeff", "DeathIntE2:Pvalue", "DeathIntE4:Coeff", "DeathIntE4:Pvalue", "Age:Coeff", "Age:Pvalue",  "E2:Coeff", "E2:Pvalue","E4:Coeff", "E4:Pvalue","AgeIntE2:Coeff", "AgeIntE2:Pvalue","AgeIntE4:Coeff", "AgeIntE4:Pvalue", "NIDs", "NObs")
+timeP<-matrix(data = NA, ncol = 12, nrow = length(cogVar))
+colnames(timeP)<-c("Baseline:Coeff", "Baseline:Pvalue", "E2:Coeff", "E2:Pvalue", "E4:Coeff", "E4:Pvalue", "BaselineIntE2:Coeff", "BaselineIntE2:Pvalue", "BaselineIntE4:Coeff", "BaselineIntE4:Pvalue", "NIDs", "NObs")
 rownames(timeP)<-cogVar
 
 for(each in cogVar){
@@ -270,26 +270,18 @@ for(each in cogVar){
 	
 	## set baseline to first visit with this cognitive measure NB may not be first visit
 	timeBaseline<-as.numeric(cad.sub$VISIT_DATE - cad.sub.first$VISIT_DATE[match(cad.sub$BBNId, cad.sub.first$BBNId)])
-	timeDeath<-as.numeric(cad.sub$VISIT_DATE - cad.sub.last$MRC_DoD[match(cad.sub$BBNId, cad.sub.last$BBNId)])
 
 	index<-match(cad.sub$BBNId, pathDat$BBNId)
-	model1<-lmer(each ~ timeBaseline + Age + GENDER + pathDat$n_e2[index] + pathDat$n_e2[index] * timeBaseline + pathDat$n_e4[index] + pathDat$n_e4[index] * timeBaseline + pathDat$Braak_tangle[index] + pathDat$Braak_tangle[index] * timeBaseline + (1 | BBNId), data = cad.sub)
-	
-	model3<-lmer(each ~ Age + GENDER + pathDat$n_e2[index] + pathDat$n_e2[index] * Age + pathDat$n_e4[index] + pathDat$n_e4[index] * Age  + pathDat$Braak_tangle[index] + pathDat$Braak_tangle[index] * Age +(1 | BBNId), data = cad.sub)
+	model1<-lmer(each ~ timeBaseline + Age + GENDER + pathDat$n_e2[index] + pathDat$n_e2[index] * timeBaseline + pathDat$n_e4[index] + pathDat$n_e4[index] * timeBaseline + pathDat$Braak_tangle[index] + pathDat$Braak_tangle[index] * timeBaseline + pathDat$BDR_Centre_key[index] + genoPCs$C1[index] + genoPCs$C2[index] + genoPCs$C3[index] + genoPCs$C4[index] + genoPCs$C5[index] + genoPCs$C6[index] + genoPCs$C7[index] + genoPCs$C8[index]+ (1 | BBNId), data = cad.sub)
+
 
 	timeP[each,1:2]<-summary(model1)$coefficients["timeBaseline", c(1,5)]
 	timeP[each,3:4]<-summary(model1)$coefficients["pathDat$n_e2[index]", c(1,5)]
 	timeP[each,5:6]<-summary(model1)$coefficients["pathDat$n_e4[index]", c(1,5)]
 	timeP[each,7:8]<-summary(model1)$coefficients["timeBaseline:pathDat$n_e2[index]", c(1,5)]
 	timeP[each,9:10]<-summary(model1)$coefficients["timeBaseline:pathDat$n_e4[index]", c(1,5)]
-
-	timeP[each,21:22]<-summary(model3)$coefficients["Age", c(1,5)]
-	timeP[each,23:24]<-summary(model3)$coefficients["pathDat$n_e2[index]", c(1,5)]
-	timeP[each,25:26]<-summary(model3)$coefficients["pathDat$n_e4[index]", c(1,5)]
-	timeP[each,27:28]<-summary(model3)$coefficients["Age:pathDat$n_e2[index]", c(1,5)]
-	timeP[each,29:30]<-summary(model3)$coefficients["Age:pathDat$n_e4[index]", c(1,5)]
 	
-	timeP[each,31]<-summary(model1)$ngrps[1]
-	timeP[each,32]<-length(summary(model1)$residuals)
+	timeP[each,11]<-summary(model1)$ngrps[1]
+	timeP[each,12]<-length(summary(model1)$residuals)
 }
 write.csv(timeP, "/mnt/data1/Gemma/BDR/BDR_genetic/Analysis/CognitiveTrajectoryInteractionWithAPOEControlBraak.csv")
