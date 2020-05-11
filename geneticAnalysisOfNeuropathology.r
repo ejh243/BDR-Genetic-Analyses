@@ -16,7 +16,7 @@ rsquared <- function(created_model, null) {
   return(R_n)
 }
 
-pMT<-0.05/33
+pMT<-0.05/36
 
 library(corrplot)
 
@@ -305,7 +305,7 @@ rowNum<-1
 for(each in quantPath){
 	for(condition in quantPath){
 		if(each != condition){
-			if(class(pathDat[,each]) != "factor"){
+			if(class(pathDat[,condition]) != "factor"){
 				model<-lm(pathDat[,condition] ~ pathDat$n_e2 + pathDat$n_e4 + pathDat[,each] + pathDat$Age + pathDat$Sex + pathDat$BDR_Centre_key + genoPCs$C1 + genoPCs$C2 + genoPCs$C3 + genoPCs$C4 + genoPCs$C5 + genoPCs$C6 + genoPCs$C7 + genoPCs$C8)
 				sumSq<-anova(model)["Sum Sq"]
 				apoePAdj[rowNum,3]<-sumSq[1,1]/sum(sumSq)*100
@@ -321,7 +321,7 @@ for(each in quantPath){
 			apoePAdj[rowNum,c(2,1)]<-summary(model)$coefficients["pathDat$n_e2",c(1,4)]
 			apoePAdj[rowNum,c(5,4)]<-summary(model)$coefficients["pathDat$n_e4",c(1,4)]
 
-			if(class(pathDat[,each]) != "factor"){
+			if(class(pathDat[,condition]) != "factor"){
 			model<-lm(pathDat[,condition] ~ prs.scale + pathDat[,each] + pathDat$Sex  + pathDat$Age + pathDat$BDR_Centre_key + genoPCs$C1 + genoPCs$C2 + genoPCs$C3 + genoPCs$C4 + genoPCs$C5 + genoPCs$C6 + genoPCs$C7 + genoPCs$C8)
 			sumSq<-anova(model)["Sum Sq"]
 			prsPAdj[rowNum,2]<-sumSq[1,1]/sum(sumSq)*100
@@ -332,7 +332,7 @@ for(each in quantPath){
 			}
 			prsPAdj[rowNum,c(3,1)]<-summary(model)$coefficients["prs.scale",c(1,4)]
 
-			if(class(pathDat[,each]) != "factor"){
+			if(class(pathDat[,condition]) != "factor"){
 				model<-lm(pathDat[,condition] ~ pathDat$n_e2 + pathDat$n_e4 + prs.scale + pathDat[,each] + pathDat$Age + pathDat$Sex + pathDat$BDR_Centre_key + genoPCs$C1 + genoPCs$C2 + genoPCs$C3 + genoPCs$C4 + genoPCs$C5 + genoPCs$C6 + genoPCs$C7 + genoPCs$C8)
 				sumSq<-anova(model)["Sum Sq"]
 				jointPAdj[rowNum,3]<-sumSq[1,1]/sum(sumSq)*100
